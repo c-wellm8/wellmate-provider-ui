@@ -3,162 +3,192 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Wellmate Provider Dashboard</title>
+<title>The Wellmate — Provider Portal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&family=Noto+Serif:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    --wind:#0093BF;--pool:#00A386;--glow:#FAAE3C;
-    --shale:#052C22;--river:#4D545E;--mist:#D3DAE5;
-    --wind-10:#0093BF1A;--pool-10:#00A3861A;--glow-10:#FAAE3C1A;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:#F4F7F6;font-family:'Noto Sans',sans-serif;color:#052C22;min-width:1280px;}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans', sans-serif; background: #F4F7F6; color: #052C22; min-width: 960px; }
 
-  /* TOP BAR */
-  .topbar{background:#052C22;padding:10px 24px;display:flex;justify-content:space-between;align-items:center;}
-  .logo{display:flex;align-items:center;gap:10px;}
-  .cairn{display:flex;align-items:flex-end;gap:2px;}
-  .c1{width:11px;height:21px;border-radius:10px 10px 8px 8px;background:#0093BF;transform:rotate(-8deg);margin-bottom:2px;}
-  .c2{width:10px;height:17px;border-radius:10px 10px 8px 8px;background:#00A386;}
-  .c3{width:9px;height:13px;border-radius:8px;background:#FAAE3C;transform:rotate(5deg);margin-bottom:4px;}
-  .logo-text{color:#fff;}
-  .logo-text .the{font-size:9px;opacity:.6;display:block;line-height:1;}
-  .logo-text .wmate{font-family:'Noto Serif',serif;font-size:15px;font-weight:700;line-height:1;}
-  .div-v{width:1px;height:22px;background:rgba(255,255,255,.15);margin:0 8px;}
-  .portal-lbl{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;}
-  .pt-chip{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:.5px solid rgba(255,255,255,.15);border-radius:22px;padding:5px 14px 5px 5px;}
-  .pt-av{width:30px;height:30px;border-radius:50%;background:#00A386;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;}
-  .pt-name{font-size:12px;font-weight:600;color:#fff;}
-  .pt-sub{font-size:9px;color:rgba(255,255,255,.5);}
-  .accent-bar{height:3px;background:linear-gradient(90deg,#0093BF 0%,#00A386 50%,#FAAE3C 100%);}
+/* ── TOKENS ── */
+:root {
+  --wind: #0093BF; --pool: #00A386; --glow: #FAAE3C;
+  --shale: #052C22; --river: #4D545E; --mist: #D3DAE5;
+  --wind-10: #0093BF1A; --pool-10: #00A3861A; --glow-10: #FAAE3C1A;
+  --card: #ffffff; --surface: #f8fafa;
+  --radius: 12px; --radius-sm: 8px;
+}
 
-  /* STRIP */
-  .strip{background:#fff;border-bottom:1px solid #D3DAE5;padding:9px 24px;display:flex;align-items:center;gap:18px;}
-  .si{display:flex;align-items:center;gap:6px;}
-  .sdot{width:7px;height:7px;border-radius:50%;}
-  .slbl{font-size:9px;color:#4D545E;text-transform:uppercase;letter-spacing:.07em;}
-  .sval{font-size:11px;font-weight:600;color:#052C22;}
-  .sval.warn{color:#B7651A;}
-  .sdiv{width:1px;height:16px;background:#D3DAE5;}
+/* ── TOP BAR ── */
+.topbar { background: var(--shale); padding: 10px 24px; display: flex; justify-content: space-between; align-items: center; }
+.logo { display: flex; align-items: center; gap: 9px; }
+.cairn { display: flex; align-items: flex-end; gap: 2px; }
+.c1 { width: 10px; height: 19px; border-radius: 9px 9px 7px 7px; background: var(--wind); transform: rotate(-8deg); margin-bottom: 2px; }
+.c2 { width: 9px; height: 16px; border-radius: 9px 9px 7px 7px; background: var(--pool); }
+.c3 { width: 8px; height: 12px; border-radius: 7px; background: var(--glow); transform: rotate(5deg); margin-bottom: 3px; }
+.wm-name { color: #fff; }
+.wm-name .the { font-size: 9px; opacity: .55; display: block; line-height: 1; }
+.wm-name .wmate { font-family: 'Noto Serif', serif; font-size: 14px; font-weight: 500; line-height: 1; }
+.logo-sep { width: 1px; height: 20px; background: rgba(255,255,255,.15); margin: 0 7px; }
+.portal { font-size: 9px; color: rgba(255,255,255,.38); letter-spacing: .09em; text-transform: uppercase; }
+.pt-chip { display: flex; align-items: center; gap: 9px; background: rgba(255,255,255,.07); border: .5px solid rgba(255,255,255,.14); border-radius: 20px; padding: 4px 12px 4px 4px; }
+.pt-av { width: 28px; height: 28px; border-radius: 50%; background: var(--pool); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500; color: #fff; }
+.pt-name { font-size: 11px; font-weight: 500; color: #fff; }
+.pt-sub { font-size: 9px; color: rgba(255,255,255,.45); }
+.accent { height: 3px; background: linear-gradient(90deg, var(--wind), var(--pool) 50%, var(--glow)); }
 
-  /* MAIN */
-  .main{padding:16px 24px;display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1280px;margin:0 auto;}
-  .full{grid-column:1/-1;}
-  .panel{background:#fff;border:1px solid #D3DAE5;border-radius:14px;padding:18px;}
-  .plbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#4D545E;display:block;margin-bottom:3px;}
-  .ptitle{font-family:'Noto Serif',serif;font-size:15px;font-weight:700;color:#052C22;margin-bottom:14px;}
+/* ── STRIP ── */
+.strip { background: var(--card); border-bottom: .5px solid var(--mist); padding: 9px 24px; display: flex; align-items: center; gap: 16px; }
+.si { display: flex; align-items: center; gap: 5px; }
+.sdot { width: 6px; height: 6px; border-radius: 50%; }
+.slbl { font-size: 9px; color: var(--river); text-transform: uppercase; letter-spacing: .07em; }
+.sval { font-size: 11px; font-weight: 500; color: var(--shale); }
+.sval.warn { color: #B7651A; }
+.sdiv { width: .5px; height: 14px; background: var(--mist); }
 
-  /* BANNER */
-  .wm-banner{background:linear-gradient(135deg,#00A3861A,#0093BF1A);border:1px solid #00A386;border-radius:10px;padding:11px 14px;margin-bottom:12px;display:flex;align-items:flex-start;gap:11px;}
-  .wm-icon{width:28px;height:28px;background:#00A386;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;color:#fff;font-weight:700;}
-  .wm-btitle{font-size:10px;font-weight:700;color:#00A386;margin-bottom:3px;text-transform:uppercase;letter-spacing:.07em;}
-  .wm-bquote{font-family:'Noto Serif',serif;font-size:12px;color:#052C22;line-height:1.5;font-style:italic;}
-  .wm-bmeta{font-size:9px;color:#4D545E;margin-top:3px;}
+/* ── TABS ── */
+.tab-nav { background: var(--card); border-bottom: .5px solid var(--mist); padding: 0 24px; display: flex; }
+.tab-btn { padding: 11px 16px; font-size: 12px; font-weight: 500; color: var(--river); border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; font-family: 'Noto Sans', sans-serif; }
+.tab-btn.active { color: var(--pool); border-bottom-color: var(--pool); }
+.tab-badge { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; font-size: 9px; font-weight: 500; background: #FAAE3C22; color: #B7651A; margin-left: 5px; }
+.tab-content { display: none; padding: 16px 24px; max-width: 1400px; margin: 0 auto; }
+.tab-content.active { display: block; }
 
-  /* GROWTH MAP */
-  .gm-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px;}
-  .gm-card{border:1px solid #D3DAE5;border-radius:11px;padding:11px;background:#f8fafa;}
-  .gm-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:7px;}
-  .gm-label-wrap{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .gm-label-text{font-size:9px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.04em;line-height:1;}
-  .gm-ctitle{font-size:11px;font-weight:700;color:#052C22;margin-bottom:2px;}
-  .gm-state{display:flex;align-items:center;gap:4px;font-size:9px;font-weight:700;justify-content:flex-end;}
-  .gm-sdot{width:5px;height:5px;border-radius:50%;}
-  .pct-badge{display:inline-flex;align-items:center;color:#fff;font-size:8px;font-weight:700;padding:2px 7px;border-radius:8px;margin-bottom:5px;}
-  .scale-bar{height:5px;border-radius:3px;background:linear-gradient(90deg,#FAAE3C 0%,#0093BF 50%,#00A386 100%);position:relative;width:100%;margin-bottom:3px;}
-  .scale-needle{position:absolute;top:-4px;width:11px;height:11px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1.5px #052C22;transform:translateX(-50%);}
-  .scale-ticks{display:flex;justify-content:space-between;margin-bottom:8px;}
-  .scale-tick{font-size:7px;font-weight:600;}
-  .gm-entries{border-top:1px solid #D3DAE5;padding-top:7px;display:flex;flex-direction:column;gap:4px;}
-  .gm-row{display:flex;justify-content:space-between;}
-  .gm-rlbl{font-size:9px;color:#4D545E;}
-  .gm-rval{font-size:9px;font-weight:600;color:#052C22;}
+/* ── LAYOUT ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.col-stack { display: flex; flex-direction: column; gap: 12px; }
 
-  /* RISK SECTION */
-  .risk-section{border:1px solid #D3DAE5;border-radius:11px;padding:12px 14px;background:#f8fafa;margin-bottom:9px;}
-  .risk-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
-  .risk-title{font-size:10px;font-weight:700;color:#052C22;font-family:'Noto Serif',serif;}
-  .risk-subtitle{font-size:8px;color:#4D545E;}
-  .risk-inline-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px 16px;}
-  .risk-row{display:flex;align-items:center;gap:6px;}
-  .risk-label{font-size:9px;color:#052C22;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .risk-bar-wrap{width:40px;height:4px;background:#D3DAE5;border-radius:2px;flex-shrink:0;}
-  .risk-fill{height:4px;border-radius:2px;}
-  .risk-nums{font-size:8px;font-weight:700;flex-shrink:0;white-space:nowrap;}
-  .risk-legend{display:flex;gap:10px;margin-top:8px;padding-top:7px;border-top:1px solid #D3DAE5;}
-  .legend-item{display:flex;align-items:center;gap:4px;}
-  .legend-swatch{width:10px;height:4px;border-radius:2px;}
-  .legend-lbl{font-size:8px;color:#4D545E;}
+/* ── PANELS ── */
+.panel { background: var(--card); border: .5px solid var(--mist); border-radius: var(--radius); padding: 16px 18px; }
+.plbl { font-size: 9px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; color: var(--river); display: block; margin-bottom: 3px; }
+.ptitle { font-family: 'Noto Serif', serif; font-size: 15px; font-weight: 500; color: var(--shale); margin-bottom: 14px; }
 
-  /* LOGISTICS */
-  .log-section{border:1px solid #D3DAE5;border-radius:11px;background:#f8fafa;overflow:hidden;}
-  .log-title{font-size:10px;font-weight:700;color:#052C22;font-family:'Noto Serif',serif;padding:12px 14px 0;}
-  .log-group-hdr{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#4D545E;padding:9px 14px 4px;background:#f8fafa;}
-  .log-row{display:grid;grid-template-columns:110px 1fr;gap:8px;padding:6px 14px;border-top:1px solid #D3DAE5;}
-  .log-key{font-size:10px;font-weight:600;color:#4D545E;}
-  .log-val{font-size:10px;color:#052C22;line-height:1.4;}
-  .log-val span{display:block;font-size:9px;color:#4D545E;margin-top:1px;}
+/* ── BANNER ── */
+.banner { background: var(--pool-10); border: .5px solid var(--pool); border-radius: var(--radius-sm); padding: 13px 15px; margin-bottom: 12px; }
+.banner-lbl { font-size: 9px; font-weight: 500; color: #006B55; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+.banner-q { font-family: 'Noto Serif', serif; font-size: 13px; color: var(--shale); line-height: 1.6; font-style: italic; }
+.banner-meta { font-size: 9px; color: var(--river); margin-top: 4px; }
 
-  /* CARE TEAM */
-  .why-box{background:#f8fafa;border:1px solid #D3DAE5;border-radius:10px;padding:12px 14px;margin-bottom:10px;}
-  .why-title{font-size:10px;font-weight:700;color:#052C22;margin-bottom:8px;font-family:'Noto Serif',serif;}
-  .why-item{display:flex;align-items:flex-start;gap:6px;margin-bottom:5px;}
-  .why-dot{width:5px;height:5px;border-radius:50%;background:#4D545E;flex-shrink:0;margin-top:5px;}
-  .why-text{font-size:10px;color:#052C22;line-height:1.4;}
-  .ctm-box{background:#00A3861A;border:1px solid #00A386;border-radius:10px;padding:11px 13px;margin-bottom:10px;}
-  .ctm-title{font-size:9px;font-weight:700;color:#00A386;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;}
-  .ctm-text{font-size:10px;color:#052C22;line-height:1.5;}
-  .section-divider{border:none;border-top:1px solid #D3DAE5;margin:12px 0;}
-  .ntabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:11px;}
-  .ntab{border:1px solid #D3DAE5;border-radius:16px;padding:4px 10px;font-size:10px;font-weight:600;color:#4D545E;display:flex;align-items:center;gap:5px;background:#f8fafa;}
-  .ntab.active{background:#00A3861A;border-color:#00A386;color:#00A386;}
-  .ntab-dot{width:6px;height:6px;border-radius:50%;display:inline-block;}
-  .note-card{background:#f8fafa;border:1px solid #D3DAE5;border-left:3px solid #00A386;border-radius:10px;padding:12px 14px;}
-  .nc-name{font-family:'Noto Serif',serif;font-size:13px;font-weight:700;color:#052C22;}
-  .nc-sub{font-size:10px;color:#4D545E;margin-bottom:8px;}
-  .nc-sum{font-size:10px;color:#4D545E;line-height:1.6;font-style:italic;margin-bottom:10px;padding-bottom:9px;border-bottom:1px solid #D3DAE5;}
-  .kp-lbl{font-size:9px;font-weight:700;color:#4D545E;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;}
-  .kp{display:flex;gap:7px;margin-bottom:5px;align-items:flex-start;}
-  .kpdot{width:5px;height:5px;border-radius:50%;background:#00A386;flex-shrink:0;margin-top:4px;}
-  .kptext{font-size:10px;color:#052C22;line-height:1.4;}
-  .flag-badge{background:#FAAE3C1A;border:1px solid #FAAE3C;color:#8A5A00;font-size:9px;font-weight:700;padding:3px 9px;border-radius:10px;display:inline-flex;align-items:center;gap:4px;margin-top:10px;}
+/* ── GROWTH MAP ── */
+.gm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.gm-card { border: .5px solid var(--mist); border-radius: var(--radius-sm); padding: 12px; background: var(--surface); }
+.gm-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.gm-name { font-size: 11px; font-weight: 500; color: var(--shale); margin-bottom: 3px; }
+.gm-state { display: flex; align-items: center; gap: 3px; font-size: 9px; }
+.gm-sdot { width: 5px; height: 5px; border-radius: 50%; }
+.gm-pct { font-family: 'Noto Serif', serif; font-size: 18px; font-weight: 500; line-height: 1; text-align: right; }
+.gm-pct-ord { font-size: 9px; }
+.gm-pct-sub { font-size: 8px; color: var(--river); text-align: right; margin-top: 1px; }
+.scale-bar { height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--glow), var(--wind) 50%, var(--pool)); position: relative; margin-bottom: 3px; }
+.scale-needle { position: absolute; top: -4px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--card); transform: translateX(-50%); }
+.scale-ticks { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.stick { font-size: 7px; font-weight: 500; }
+.gm-rows { border-top: .5px solid var(--mist); padding-top: 7px; display: flex; flex-direction: column; gap: 4px; }
+.gm-row { display: flex; justify-content: space-between; }
+.gm-rlbl { font-size: 9px; color: var(--river); }
+.gm-rval { font-size: 9px; font-weight: 500; color: var(--shale); }
+.src { font-size: 8px; padding: 1px 4px; border-radius: 4px; margin-left: 3px; }
+.src-s { background: #E6F1FB; color: #185FA5; }
+.src-p { background: #E1F5EE; color: #006B55; }
 
-  /* REFERRAL */
-  .ref-controls{display:flex;gap:8px;margin-bottom:9px;align-items:center;}
-  .ref-input{flex:1;background:#f8fafa;border:1px solid #D3DAE5;border-radius:8px;padding:8px 12px;font-size:11px;font-family:'Noto Sans',sans-serif;color:#052C22;}
-  .ref-select{background:#f8fafa;border:1px solid #D3DAE5;border-radius:8px;padding:8px 10px;color:#052C22;font-size:11px;font-family:'Noto Sans',sans-serif;}
-  .tag-filter-row{display:flex;gap:5px;margin-bottom:9px;align-items:center;}
-  .tf-lbl{font-size:9px;color:#4D545E;font-weight:600;}
-  .tf{font-size:9px;font-weight:600;padding:3px 9px;border-radius:10px;border:1px solid #D3DAE5;background:#f8fafa;color:#4D545E;}
-  .tf.cert{background:#EFF4FF;border-color:#93B4E8;color:#1D4ED8;}
-  .tf.spec{background:#00A3861A;border-color:#00A386;color:#006B55;}
-  .tf.phil{background:#FAAE3C1A;border-color:#FAAE3C;color:#8A5A00;}
-  .ref-count{font-size:10px;color:#4D545E;margin-bottom:9px;}
-  .rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-  .rcard{background:#f8fafa;border:1px solid #D3DAE5;border-radius:10px;padding:12px;}
-  .rcard.sel{border-color:#00A386;background:#EFF9F7;}
-  .rc-name{font-family:'Noto Serif',serif;font-size:11px;font-weight:700;color:#052C22;margin-bottom:1px;}
-  .rc-spec{font-size:10px;color:#4D545E;margin-bottom:6px;}
-  .rc-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;}
-  .badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:10px;}
-  .badge.acc{background:#00A3861A;color:#006B55;}
-  .badge.clo{background:#FAAE3C1A;color:#8A5A00;}
-  .rc-rating{font-size:10px;color:#4D545E;}
-  .rc-wait{font-size:9px;font-weight:600;margin-bottom:5px;}
-  .rc-wait.fast{color:#00A386;}
-  .rc-wait.med{color:#FAAE3C;}
-  .tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:6px;}
-  .tag{font-size:8px;font-weight:600;padding:2px 6px;border-radius:8px;border:1px solid;}
-  .tag.cert{background:#EFF4FF;border-color:#93B4E8;color:#1D4ED8;}
-  .tag.spec{background:#00A3861A;border-color:#00A386;color:#006B55;}
-  .tag.phil{background:#FAAE3C1A;border-color:#FAAE3C;color:#8A5A00;}
-  .tag.lic{background:#F3EDFF;border-color:#A78BDA;color:#5B21B6;}
-  .det-div{border-top:1px solid #D3DAE5;margin-top:7px;padding-top:7px;display:flex;flex-direction:column;gap:4px;}
-  .det-row{display:flex;justify-content:space-between;}
-  .det-l{font-size:9px;color:#4D545E;}
-  .det-v{font-size:9px;font-weight:600;color:#052C22;}
-  .ref-btn{margin-top:8px;width:100%;background:#00A3861A;border:1px solid #00A386;color:#006B55;border-radius:8px;padding:7px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Noto Sans',sans-serif;}
+/* ── WHY BOX ── */
+.why-box { background: var(--surface); border: .5px solid var(--mist); border-radius: var(--radius-sm); padding: 13px 15px; }
+.why-title { font-family: 'Noto Serif', serif; font-size: 12px; font-weight: 500; color: var(--shale); margin-bottom: 9px; }
+.blist { display: flex; flex-direction: column; gap: 7px; }
+.bitem { display: flex; gap: 8px; align-items: flex-start; }
+.bdot { width: 4px; height: 4px; border-radius: 50%; background: var(--river); flex-shrink: 0; margin-top: 6px; }
+.btext { font-size: 10px; color: var(--shale); line-height: 1.5; }
+
+/* ── RECOMMENDATIONS ── */
+.ns-list { display: flex; flex-direction: column; gap: 10px; }
+.ns-item { border: .5px solid var(--mist); border-radius: var(--radius-sm); padding: 13px 14px; background: var(--surface); }
+.ns-item.highlight { border-color: var(--pool); background: #00A3860A; }
+.ns-item.flagged { border-color: var(--glow); background: #FAAE3C0A; }
+.ns-why { font-size: 11px; color: var(--river); line-height: 1.6; margin-bottom: 10px; padding-bottom: 10px; border-bottom: .5px solid var(--mist); font-style: italic; }
+.ns-why strong { color: var(--shale); font-style: normal; font-weight: 500; }
+.ns-action { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.ns-label { font-size: 12px; font-weight: 500; color: var(--shale); margin-bottom: 3px; }
+.ns-sub { font-size: 10px; color: var(--river); line-height: 1.4; }
+.ns-btn { font-size: 11px; font-weight: 500; border-radius: var(--radius-sm); padding: 7px 14px; cursor: pointer; white-space: nowrap; font-family: 'Noto Sans', sans-serif; flex-shrink: 0; }
+.ns-btn.pool { color: #006B55; background: var(--pool-10); border: .5px solid var(--pool); }
+.ns-btn.wind { color: #185FA5; background: var(--wind-10); border: .5px solid var(--wind); }
+.ns-btn.glow { color: #8A5A00; background: var(--glow-10); border: .5px solid var(--glow); }
+
+/* ── CARE TEAM TAB ── */
+.ctm-box { background: var(--pool-10); border: .5px solid var(--pool); border-radius: var(--radius-sm); padding: 13px 15px; }
+.ctm-lbl { font-size: 9px; font-weight: 500; color: #006B55; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 5px; }
+.ctm-text { font-size: 11px; color: var(--shale); line-height: 1.6; }
+
+/* ── RISK ── */
+.risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 18px; }
+.risk-row { display: flex; align-items: center; gap: 6px; }
+.risk-lbl { font-size: 9px; color: var(--shale); flex: 1; }
+.risk-trk { width: 36px; height: 4px; background: var(--mist); border-radius: 2px; flex-shrink: 0; }
+.risk-fill { height: 4px; border-radius: 2px; }
+.risk-num { font-size: 8px; font-weight: 500; width: 22px; text-align: right; }
+.risk-vs { font-size: 8px; color: var(--river); width: 40px; }
+.risk-leg { display: flex; gap: 10px; margin-top: 9px; padding-top: 8px; border-top: .5px solid var(--mist); }
+.leg { display: flex; align-items: center; gap: 4px; }
+.leg-sw { width: 10px; height: 4px; border-radius: 2px; }
+.leg-lbl { font-size: 8px; color: var(--river); }
+
+/* ── NOTES LANDSCAPE ── */
+.notes-panel { background: var(--card); border: .5px solid var(--mist); border-radius: var(--radius); padding: 16px 18px; margin-top: 14px; }
+.ntabs { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 14px; }
+.ntab { border: .5px solid var(--mist); border-radius: 14px; padding: 4px 11px; font-size: 10px; font-weight: 500; color: var(--river); display: flex; align-items: center; gap: 5px; background: var(--surface); cursor: pointer; }
+.ntab.active { background: var(--pool-10); border-color: var(--pool); color: #006B55; }
+.ndot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+.note-body { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.note-left { border: .5px solid var(--mist); border-left: 2px solid var(--pool); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 13px 15px; background: var(--surface); }
+.nc-name { font-family: 'Noto Serif', serif; font-size: 13px; font-weight: 500; color: var(--shale); }
+.nc-meta { font-size: 10px; color: var(--river); margin-bottom: 10px; }
+.nc-q { font-size: 10px; color: var(--river); line-height: 1.6; font-style: italic; }
+.kp-lbl { font-size: 9px; font-weight: 500; color: var(--river); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 9px; }
+.kp { display: flex; gap: 7px; margin-bottom: 7px; align-items: flex-start; }
+.kpdot { width: 4px; height: 4px; border-radius: 50%; background: var(--pool); flex-shrink: 0; margin-top: 5px; }
+.kptext { font-size: 10px; color: var(--shale); line-height: 1.5; }
+.flag-badge { background: var(--glow-10); border: .5px solid var(--glow); color: #8A5A00; font-size: 9px; font-weight: 500; padding: 4px 10px; border-radius: 10px; display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; }
+
+/* ── REFERRALS ── */
+.filter-bar { background: var(--surface); border: .5px solid var(--mist); border-radius: var(--radius-sm); padding: 12px 15px; margin-bottom: 14px; }
+.filter-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.fchip { font-size: 10px; font-weight: 500; padding: 4px 10px; border-radius: 10px; border: .5px solid; display: flex; align-items: center; gap: 5px; }
+.fchip.pool { background: var(--pool-10); border-color: var(--pool); color: #006B55; }
+.fchip.wind { background: var(--wind-10); border-color: var(--wind); color: #185FA5; }
+.fchip.glow { background: var(--glow-10); border-color: var(--glow); color: #8A5A00; }
+.fchip-x { font-size: 11px; opacity: .5; cursor: pointer; }
+.ref-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+.rcard { background: var(--surface); border: .5px solid var(--mist); border-radius: var(--radius-sm); padding: 14px; }
+.rcard.best { border-color: var(--pool); background: #00A3860A; position: relative; }
+.rcard.best::before { content: 'Best match'; position: absolute; top: -1px; right: 12px; font-size: 8px; font-weight: 500; color: #fff; background: var(--pool); padding: 2px 8px; border-radius: 0 0 6px 6px; }
+.rcard.dim { opacity: .65; }
+.rc-name { font-family: 'Noto Serif', serif; font-size: 12px; font-weight: 500; color: var(--shale); margin-bottom: 2px; }
+.rc-spec { font-size: 10px; color: var(--river); margin-bottom: 8px; }
+.rc-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.badge { font-size: 9px; font-weight: 500; padding: 2px 7px; border-radius: 9px; }
+.badge.acc { background: var(--pool-10); color: #006B55; }
+.rc-rat { font-size: 10px; color: var(--river); }
+.rc-wait { font-size: 9px; font-weight: 500; margin-bottom: 8px; }
+.rc-wait.fast { color: var(--pool); }
+.rc-wait.med { color: #BA7517; }
+.rtags { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 9px; }
+.rtag { font-size: 8px; font-weight: 500; padding: 2px 6px; border-radius: 6px; border: .5px solid; }
+.rtag.spec { background: var(--pool-10); border-color: var(--pool); color: #006B55; }
+.rtag.lic { background: #EEEDFE; border-color: #AFA9EC; color: #3C3489; }
+.rtag.phil { background: var(--glow-10); border-color: var(--glow); color: #8A5A00; }
+.rtag.cert { background: #E6F1FB; border-color: #85B7EB; color: #0C447C; }
+.match-list { border-top: .5px solid var(--mist); padding-top: 9px; display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+.match-row { display: flex; align-items: flex-start; gap: 6px; font-size: 9px; }
+.match-text { color: var(--river); line-height: 1.4; }
+.match-text strong { color: var(--shale); font-weight: 500; }
+.ref-btn { width: 100%; background: var(--pool-10); border: .5px solid var(--pool); color: #006B55; border-radius: var(--radius-sm); padding: 7px; font-size: 10px; font-weight: 500; cursor: pointer; font-family: 'Noto Sans', sans-serif; }
+.ref-btn:hover { background: #00A38622; }
+.ref-btn.dim { opacity: .6; }
+.divider-lbl { font-size: 9px; font-weight: 500; color: var(--river); text-transform: uppercase; letter-spacing: .08em; padding-top: 4px; margin-bottom: 10px; border-top: .5px solid var(--mist); }
+.ref-grid-sm { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.rcard-sm { background: var(--surface); border: .5px solid var(--mist); border-radius: var(--radius-sm); padding: 11px 13px; }
+.rcard-sm-name { font-size: 11px; font-weight: 500; color: var(--shale); margin-bottom: 1px; }
+.rcard-sm-spec { font-size: 10px; color: var(--river); }
 </style>
 </head>
 <body>
@@ -166,240 +196,284 @@
 <div class="topbar">
   <div class="logo">
     <div class="cairn"><div class="c1"></div><div class="c2"></div><div class="c3"></div></div>
-    <div class="logo-text"><span class="the">The</span><span class="wmate">Wellmate™</span></div>
-    <div class="div-v"></div>
-    <div class="portal-lbl">Provider Portal</div>
+    <div class="wm-name"><span class="the">The</span><span class="wmate">Wellmate™</span></div>
+    <div class="logo-sep"></div>
+    <div class="portal">Provider portal</div>
   </div>
   <div class="pt-chip">
     <div class="pt-av">TJ</div>
-    <div><div class="pt-name">Taylor Jordan</div><div class="pt-sub">DOB: 1986-09-03 · MRN-20847</div></div>
+    <div><div class="pt-name">Taylor Jordan</div><div class="pt-sub">DOB: Sep 3, 1986 · MRN-20847</div></div>
   </div>
 </div>
-<div class="accent-bar"></div>
+<div class="accent"></div>
 
 <div class="strip">
-  <div class="si"><div class="sdot" style="background:#00A386"></div><span class="slbl">PCP</span><span class="sval">Dr. Amara Osei</span></div>
+  <div class="si"><div class="sdot" style="background:var(--pool)"></div><span class="slbl">PCP</span><span class="sval">Dr. Amara Osei</span></div>
   <div class="sdiv"></div>
-  <div class="si"><div class="sdot" style="background:#0093BF"></div><span class="slbl">Active Providers</span><span class="sval">4</span></div>
+  <div class="si"><div class="sdot" style="background:var(--wind)"></div><span class="slbl">Active providers</span><span class="sval">4</span></div>
   <div class="sdiv"></div>
-  <div class="si"><div class="sdot" style="background:#FAAE3C"></div><span class="slbl">Care Flags</span><span class="sval warn">1 active</span></div>
-  <div class="sdiv"></div>
-  <div class="si"><div class="sdot" style="background:#00A386"></div><span class="slbl">Growth State</span><span class="sval" style="color:#00A386">Building Momentum</span></div>
-  <span style="margin-left:auto;font-size:9px;color:#4D545E">Last synced: Today, 8:42 AM</span>
+  <div class="si"><div class="sdot" style="background:var(--glow)"></div><span class="slbl">Care flags</span><span class="sval warn">1 active</span></div>
+  <span style="margin-left:auto;font-size:9px;color:var(--river)">Last synced: Today, 8:42 AM</span>
 </div>
 
-<div class="main">
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('overview',this)">Overview</button>
+  <button class="tab-btn" onclick="showTab('care',this)">Care team<span class="tab-badge">1</span></button>
+  <button class="tab-btn" onclick="showTab('referrals',this)">Referrals</button>
+</div>
 
-  <!-- LEFT PANEL -->
-  <div class="panel" style="display:flex;flex-direction:column;gap:0;">
-    <span class="plbl">Wellmate Growth Map™</span>
-    <h2 class="ptitle" style="margin-bottom:10px;">Taylor's Whole Health View</h2>
+<!-- ══════════════════════════════════════
+     OVERVIEW
+══════════════════════════════════════ -->
+<div class="tab-content active" id="tab-overview">
+  <div class="two-col">
 
-    <div class="wm-banner">
-      <div class="wm-icon">&#128172;</div>
-      <div>
-        <div class="wm-btitle">What matters to Taylor</div>
-        <div class="wm-bquote">"I want to feel energized throughout my day and be present for my family in the evenings."</div>
-        <div class="wm-bmeta">Reported via Sage · Updated 3 days ago</div>
+    <!-- LEFT: Growth Map + Why Taylor is Here -->
+    <div class="panel">
+      <span class="plbl">Wellmate Growth Map™</span>
+      <h2 class="ptitle">Taylor's whole health view</h2>
+      <div class="banner">
+        <div class="banner-lbl">What matters to Taylor</div>
+        <div class="banner-q">"I want to feel energized throughout my day and be present for my family in the evenings."</div>
+        <div class="banner-meta">Reported via Sage · Updated 3 days ago</div>
+      </div>
+      <div class="gm-grid">
+        <div class="gm-card" style="border-color:var(--wind)">
+          <div class="gm-head">
+            <div><div class="gm-name">Mind &amp; purpose</div><div class="gm-state" style="color:#185FA5"><div class="gm-sdot" style="background:var(--wind)"></div>Strengthening</div></div>
+            <div><div class="gm-pct" style="color:var(--wind)">62<span class="gm-pct-ord">nd</span></div><div class="gm-pct-sub">percentile</div></div>
+          </div>
+          <div class="scale-bar"><div class="scale-needle" style="left:55%;background:var(--wind)"></div></div>
+          <div class="scale-ticks"><span class="stick" style="color:var(--glow)">Build</span><span class="stick" style="color:var(--wind)">Strengthen</span><span class="stick" style="color:var(--pool)">Sustain</span></div>
+          <div class="gm-rows">
+            <div class="gm-row"><span class="gm-rlbl">Stress</span><span class="gm-rval">Moderate<span class="src src-s">Sage</span></span></div>
+            <div class="gm-row"><span class="gm-rlbl">Sleep</span><span class="gm-rval">6–7 hrs, disrupted<span class="src src-s">Sage</span></span></div>
+            <div class="gm-row"><span class="gm-rlbl">PHQ-9</span><span class="gm-rval">7 — mild<span class="src src-s">Sage</span></span></div>
+          </div>
+        </div>
+        <div class="gm-card" style="border-color:var(--pool)">
+          <div class="gm-head">
+            <div><div class="gm-name">Medical care</div><div class="gm-state" style="color:#006B55"><div class="gm-sdot" style="background:var(--pool)"></div>Building</div></div>
+            <div><div class="gm-pct" style="color:var(--shale)">44<span class="gm-pct-ord">th</span></div><div class="gm-pct-sub">percentile</div></div>
+          </div>
+          <div class="scale-bar"><div class="scale-needle" style="left:38%;background:var(--shale)"></div></div>
+          <div class="scale-ticks"><span class="stick" style="color:var(--glow)">Build</span><span class="stick" style="color:var(--wind)">Strengthen</span><span class="stick" style="color:var(--pool)">Sustain</span></div>
+          <div class="gm-rows">
+            <div class="gm-row"><span class="gm-rlbl">HbA1c</span><span class="gm-rval">6.2% — prediabetes<span class="src src-p">Provider</span></span></div>
+            <div class="gm-row"><span class="gm-rlbl">Blood pressure</span><span class="gm-rval">118/76 — normal<span class="src src-p">Provider</span></span></div>
+            <div class="gm-row"><span class="gm-rlbl">Active Rx</span><span class="gm-rval">Lisinopril 10mg<span class="src src-p">Provider</span></span></div>
+          </div>
+        </div>
+        <div class="gm-card" style="border-color:var(--glow)">
+          <div class="gm-head">
+            <div><div class="gm-name">Relationships &amp; env.</div><div class="gm-state" style="color:#8A5A00"><div class="gm-sdot" style="background:var(--glow)"></div>Sustaining</div></div>
+            <div><div class="gm-pct" style="color:var(--pool)">78<span class="gm-pct-ord">th</span></div><div class="gm-pct-sub">percentile</div></div>
+          </div>
+          <div class="scale-bar"><div class="scale-needle" style="left:82%;background:var(--pool)"></div></div>
+          <div class="scale-ticks"><span class="stick" style="color:var(--glow)">Build</span><span class="stick" style="color:var(--wind)">Strengthen</span><span class="stick" style="color:var(--pool)">Sustain</span></div>
+          <div class="gm-rows">
+            <div class="gm-row"><span class="gm-rlbl">Social support</span><span class="gm-rval">Strong family<span class="src src-s">Sage</span></span></div>
+            <div class="gm-row"><span class="gm-rlbl">Housing</span><span class="gm-rval">Stable<span class="src src-s">Sage</span></span></div>
+            <div class="gm-row"><span class="gm-rlbl">Financial stress</span><span class="gm-rval">Some concern<span class="src src-s">Sage</span></span></div>
+          </div>
+        </div>
+        <div class="gm-card" style="border-color:var(--wind)">
+          <div class="gm-head">
+            <div><div class="gm-name">Lifestyle</div><div class="gm-state" style="color:#185FA5"><div class="gm-sdot" style="background:var(--wind)"></div>Strengthening</div></div>
+            <div><div class="gm-pct" style="color:var(--wind)">51<span class="gm-pct-ord">st</span></div><div class="gm-pct-sub">percentile</div></div>
+          </div>
+          <div class="scale-bar"><div class="scale-needle" style="left:50%;background:var(--wind)"></div></div>
+          <div class="scale-ticks"><span class="stick" style="color:var(--glow)">Build</span><span class="stick" style="color:var(--wind)">Strengthen</span><span class="stick" style="color:var(--pool)">Sustain</span></div>
+          <div class="gm-rows">
+            <div class="gm-row"><span class="gm-rlbl">Steps / day</span><span class="gm-rval">4,200 avg<span class="src src-s">Sage</span></span></div>
+            <div class="gm-row"><span class="gm-rlbl">Exercise</span><span class="gm-rval">1–2× / wk<span class="src src-s">Sage</span></span></div>
+            <div class="gm-row"><span class="gm-rlbl">Nutrition</span><span class="gm-rval">3–4 servings veg<span class="src src-s">Sage</span></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="why-box">
+        <div class="why-title">Why Taylor is here</div>
+        <div class="blist">
+          <div class="bitem"><div class="bdot"></div><div class="btext">Recently diagnosed as prediabetic — wants to reverse course before T2D progression.</div></div>
+          <div class="bitem"><div class="bdot"></div><div class="btext">Afternoon energy crashes affecting work performance and family presence.</div></div>
+          <div class="bitem"><div class="bdot"></div><div class="btext">Lower back pain limiting exercise, creating a compounding cycle.</div></div>
+        </div>
       </div>
     </div>
 
-    <div class="gm-grid">
-      <!-- Mind & Purpose -->
-      <div class="gm-card" style="border-color:#0093BF">
-        <div class="gm-top">
-          <div class="gm-label-wrap" style="background:#0093BF"><span class="gm-label-text">M&amp;P</span></div>
-          <div style="text-align:right"><div class="gm-ctitle">Mind &amp; Purpose</div><div class="gm-state" style="color:#0093BF"><div class="gm-sdot" style="background:#0093BF"></div>Strengthening</div></div>
+    <!-- RIGHT: The Wellmate's recommendations -->
+    <div class="panel">
+      <span class="plbl">For Dr. Amara Osei · PCP</span>
+      <h2 class="ptitle">The Wellmate's recommendations</h2>
+      <div class="ns-list">
+        <div class="ns-item highlight">
+          <div class="ns-why">Taylor's family dinners are her stated goal — and her strongest asset. <strong>Involving her family in building blood sugar-friendly meals</strong> connects her prediabetes reversal directly to what matters most to her.</div>
+          <div class="ns-action">
+            <div><div class="ns-label">Refer to a metabolic dietitian</div><div class="ns-sub">2 matches near Taylor who specialize in prediabetes &amp; family meal planning</div></div>
+            <button class="ns-btn pool" onclick="showTab('referrals', document.querySelectorAll('.tab-btn')[2])">See matches →</button>
+          </div>
         </div>
-        <div class="pct-badge" style="background:#0093BF">62nd percentile · peers 35–40F</div>
-        <div class="scale-bar"><div class="scale-needle" style="left:55%;background:#0093BF"></div></div>
-        <div class="scale-ticks"><span class="scale-tick" style="color:#FAAE3C">Build</span><span class="scale-tick" style="color:#0093BF">Strengthen</span><span class="scale-tick" style="color:#00A386">Sustain</span></div>
-        <div class="gm-entries">
-          <div class="gm-row"><span class="gm-rlbl">Stress level</span><span class="gm-rval">Moderate</span></div>
-          <div class="gm-row"><span class="gm-rlbl">Sleep</span><span class="gm-rval">6–7 hrs, disrupted</span></div>
-          <div class="gm-row"><span class="gm-rlbl">PHQ-9</span><span class="gm-rval">7 — Mild</span></div>
+        <div class="ns-item">
+          <div class="ns-why">Taylor's afternoon crashes are driven by <strong>two compounding causes</strong> — blood sugar instability and work stress. A CGM would help her see the blood sugar piece clearly, making the connection between food choices and how she feels by 3pm.</div>
+          <div class="ns-action">
+            <div><div class="ns-label">Discuss a CGM trial with Taylor</div><div class="ns-sub">Prediabetes HbA1c 6.2% — CGM use is clinically appropriate</div></div>
+            <button class="ns-btn wind">Note in chart</button>
+          </div>
         </div>
-      </div>
-      <!-- Medical Care -->
-      <div class="gm-card" style="border-color:#00A386">
-        <div class="gm-top">
-          <div class="gm-label-wrap" style="background:#052C22"><span class="gm-label-text">MC</span></div>
-          <div style="text-align:right"><div class="gm-ctitle">Medical Care</div><div class="gm-state" style="color:#00A386"><div class="gm-sdot" style="background:#00A386"></div>Building</div></div>
-        </div>
-        <div class="pct-badge" style="background:#052C22">44th percentile · peers 35–40F</div>
-        <div class="scale-bar"><div class="scale-needle" style="left:38%;background:#052C22"></div></div>
-        <div class="scale-ticks"><span class="scale-tick" style="color:#FAAE3C">Build</span><span class="scale-tick" style="color:#0093BF">Strengthen</span><span class="scale-tick" style="color:#00A386">Sustain</span></div>
-        <div class="gm-entries">
-          <div class="gm-row"><span class="gm-rlbl">HbA1c</span><span class="gm-rval">7.1% — improving</span></div>
-          <div class="gm-row"><span class="gm-rlbl">BP trend</span><span class="gm-rval">Improving</span></div>
-          <div class="gm-row"><span class="gm-rlbl">Active Rx</span><span class="gm-rval">2 medications</span></div>
-        </div>
-      </div>
-      <!-- Relationships -->
-      <div class="gm-card" style="border-color:#FAAE3C">
-        <div class="gm-top">
-          <div class="gm-label-wrap" style="background:#FAAE3C"><span class="gm-label-text" style="color:#052C22">R&amp;E</span></div>
-          <div style="text-align:right"><div class="gm-ctitle">Relationships &amp; Env.</div><div class="gm-state" style="color:#8A5A00"><div class="gm-sdot" style="background:#FAAE3C"></div>Sustaining</div></div>
-        </div>
-        <div class="pct-badge" style="background:#00A386">78th percentile · peers 35–40F</div>
-        <div class="scale-bar"><div class="scale-needle" style="left:82%;background:#00A386"></div></div>
-        <div class="scale-ticks"><span class="scale-tick" style="color:#FAAE3C">Build</span><span class="scale-tick" style="color:#0093BF">Strengthen</span><span class="scale-tick" style="color:#00A386">Sustain</span></div>
-        <div class="gm-entries">
-          <div class="gm-row"><span class="gm-rlbl">Social support</span><span class="gm-rval">Strong family</span></div>
-          <div class="gm-row"><span class="gm-rlbl">Housing</span><span class="gm-rval">Stable</span></div>
-          <div class="gm-row"><span class="gm-rlbl">Financial stress</span><span class="gm-rval">Some concern</span></div>
-        </div>
-      </div>
-      <!-- Lifestyle -->
-      <div class="gm-card" style="border-color:#0093BF">
-        <div class="gm-top">
-          <div class="gm-label-wrap" style="background:#0093BF"><span class="gm-label-text">LS</span></div>
-          <div style="text-align:right"><div class="gm-ctitle">Lifestyle</div><div class="gm-state" style="color:#0093BF"><div class="gm-sdot" style="background:#0093BF"></div>Strengthening</div></div>
-        </div>
-        <div class="pct-badge" style="background:#0093BF">51st percentile · peers 35–40F</div>
-        <div class="scale-bar"><div class="scale-needle" style="left:50%;background:#0093BF"></div></div>
-        <div class="scale-ticks"><span class="scale-tick" style="color:#FAAE3C">Build</span><span class="scale-tick" style="color:#0093BF">Strengthen</span><span class="scale-tick" style="color:#00A386">Sustain</span></div>
-        <div class="gm-entries">
-          <div class="gm-row"><span class="gm-rlbl">Steps / day</span><span class="gm-rval">4,200 avg</span></div>
-          <div class="gm-row"><span class="gm-rlbl">Exercise</span><span class="gm-rval">1–2× / wk</span></div>
-          <div class="gm-row"><span class="gm-rlbl">Nutrition</span><span class="gm-rval">3–4 servings veg</span></div>
+        <div class="ns-item flagged">
+          <div class="ns-why">Endocrinology flagged weight gain. In the context of prediabetes, <strong>coordinating now rather than separately</strong> prevents Taylor from receiving fragmented advice about the same issue from two providers.</div>
+          <div class="ns-action">
+            <div><div class="ns-label">Coordinate with Endocrinology on weight trend</div><div class="ns-sub">Flagged by Dr. Kim · Apr 28 — align before next visit</div></div>
+            <button class="ns-btn glow">Send note</button>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <!-- RISKS -->
-    <div class="risk-section">
-      <div class="risk-header">
-        <span class="risk-title">10-Year Risk Priorities</span>
-        <span class="risk-subtitle">Taylor vs. peers 35–40F</span>
-      </div>
-      <div class="risk-inline-grid">
-        <div class="risk-row"><span class="risk-label">Cardiovascular event</span><div class="risk-bar-wrap"><div class="risk-fill" style="width:62%;background:#FAAE3C"></div></div><span class="risk-nums" style="color:#FAAE3C">12% <span style="color:#4D545E;font-weight:400">vs. 7%</span></span></div>
-        <div class="risk-row"><span class="risk-label">Metabolic syndrome</span><div class="risk-bar-wrap"><div class="risk-fill" style="width:50%;background:#0093BF"></div></div><span class="risk-nums" style="color:#0093BF">41% <span style="color:#4D545E;font-weight:400">vs. 31%</span></span></div>
-        <div class="risk-row"><span class="risk-label">T2D complication</span><div class="risk-bar-wrap"><div class="risk-fill" style="width:54%;background:#FAAE3C"></div></div><span class="risk-nums" style="color:#FAAE3C">28% <span style="color:#4D545E;font-weight:400">vs. 14%</span></span></div>
-        <div class="risk-row"><span class="risk-label">Depression recurrence</span><div class="risk-bar-wrap"><div class="risk-fill" style="width:42%;background:#0093BF"></div></div><span class="risk-nums" style="color:#0093BF">34% <span style="color:#4D545E;font-weight:400">vs. 28%</span></span></div>
-        <div class="risk-row"><span class="risk-label">Sleep disorder</span><div class="risk-bar-wrap"><div class="risk-fill" style="width:38%;background:#0093BF"></div></div><span class="risk-nums" style="color:#0093BF">22% <span style="color:#4D545E;font-weight:400">vs. 18%</span></span></div>
-        <div class="risk-row"><span class="risk-label">Musculoskeletal injury</span><div class="risk-bar-wrap"><div class="risk-fill" style="width:28%;background:#00A386"></div></div><span class="risk-nums" style="color:#00A386">18% <span style="color:#4D545E;font-weight:400">vs. 20%</span></span></div>
-      </div>
-      <div class="risk-legend">
-        <div class="legend-item"><div class="legend-swatch" style="background:#FAAE3C"></div><span class="legend-lbl">Elevated above peers</span></div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#0093BF"></div><span class="legend-lbl">Slightly above peers</span></div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#00A386"></div><span class="legend-lbl">At or below peers</span></div>
+<!-- ══════════════════════════════════════
+     CARE TEAM
+══════════════════════════════════════ -->
+<div class="tab-content" id="tab-care">
+
+  <!-- TOP: Connection to What Matters + 10-Year Risks -->
+  <div class="two-col" style="margin-bottom:14px;">
+    <div class="panel">
+      <div class="ctm-box">
+        <div class="ctm-lbl">Connection to what matters</div>
+        <div class="ctm-text">Work stress and blood sugar instability are both driving Taylor's afternoon crashes — directly tied to her family presence goal. Prediabetes reversal would address fatigue, mood, and cardiovascular risk simultaneously.</div>
       </div>
     </div>
-
-    <!-- LOGISTICS -->
-    <div class="log-section" style="margin-top:9px;">
-      <div class="log-title">Care Plan Logistics</div>
-      <div class="log-group-hdr">Scheduling</div>
-      <div class="log-row"><div class="log-key">Availability</div><div class="log-val">Morning or lunchtime preferred<span>Available before 2 PM most weekdays</span></div></div>
-      <div class="log-row"><div class="log-key">Constraints</div><div class="log-val">Limited on school holidays<span>Two school-age children; pickup at 3:30 PM</span></div></div>
-      <div class="log-row"><div class="log-key">Visit format</div><div class="log-val">In-person for new consults<span>Telehealth accepted for follow-ups</span></div></div>
-      <div class="log-group-hdr">Location</div>
-      <div class="log-row"><div class="log-key">Geography</div><div class="log-val">North side of city<span>Prefers providers within ~15 min drive</span></div></div>
-      <div class="log-group-hdr">Financial</div>
-      <div class="log-row"><div class="log-key">Coverage</div><div class="log-val">Insurance coverage strongly preferred<span>Open to OOP for evidence-based, high-value services</span></div></div>
-      <div class="log-row" style="padding-bottom:14px;"><div class="log-key">Household</div><div class="log-val">Dual income, economically stable<span>Will not decline care due to cost alone if value is clear</span></div></div>
+    <div class="panel">
+      <div class="plbl">10-year risk priorities</div>
+      <div style="font-size:9px;color:var(--river);margin-bottom:10px;margin-top:3px;">Taylor vs. peers 35–40F</div>
+      <div class="risk-grid">
+        <div class="risk-row"><span class="risk-lbl">Progression to T2D</span><div class="risk-trk"><div class="risk-fill" style="width:65%;background:var(--glow)"></div></div><span class="risk-num" style="color:#BA7517">37%</span><span class="risk-vs">vs. 12%</span></div>
+        <div class="risk-row"><span class="risk-lbl">Metabolic syndrome</span><div class="risk-trk"><div class="risk-fill" style="width:50%;background:var(--wind)"></div></div><span class="risk-num" style="color:#185FA5">41%</span><span class="risk-vs">vs. 31%</span></div>
+        <div class="risk-row"><span class="risk-lbl">Cardiovascular event</span><div class="risk-trk"><div class="risk-fill" style="width:44%;background:var(--wind)"></div></div><span class="risk-num" style="color:#185FA5">9%</span><span class="risk-vs">vs. 6%</span></div>
+        <div class="risk-row"><span class="risk-lbl">Depression recurrence</span><div class="risk-trk"><div class="risk-fill" style="width:42%;background:var(--wind)"></div></div><span class="risk-num" style="color:#185FA5">34%</span><span class="risk-vs">vs. 28%</span></div>
+        <div class="risk-row"><span class="risk-lbl">Sleep disorder</span><div class="risk-trk"><div class="risk-fill" style="width:38%;background:var(--wind)"></div></div><span class="risk-num" style="color:#185FA5">22%</span><span class="risk-vs">vs. 18%</span></div>
+        <div class="risk-row"><span class="risk-lbl">Musculoskeletal</span><div class="risk-trk"><div class="risk-fill" style="width:28%;background:var(--pool)"></div></div><span class="risk-num" style="color:#006B55">18%</span><span class="risk-vs">vs. 20%</span></div>
+      </div>
+      <div class="risk-leg">
+        <div class="leg"><div class="leg-sw" style="background:var(--glow)"></div><span class="leg-lbl">Elevated above peers</span></div>
+        <div class="leg"><div class="leg-sw" style="background:var(--wind)"></div><span class="leg-lbl">Slightly above</span></div>
+        <div class="leg"><div class="leg-sw" style="background:var(--pool)"></div><span class="leg-lbl">At or below peers</span></div>
+      </div>
     </div>
   </div>
 
-  <!-- RIGHT PANEL -->
-  <div class="panel" style="display:flex;flex-direction:column;gap:0;">
-    <span class="plbl">Care Team</span>
-    <h2 class="ptitle" style="margin-bottom:12px;">Care Team Considerations</h2>
-
-    <div class="why-box">
-      <div class="why-title">Why Taylor is Here</div>
-      <div class="why-item"><div class="why-dot"></div><div class="why-text">Seeking holistic support after years of managing Type 2 diabetes reactively — wants a proactive, whole-person approach.</div></div>
-      <div class="why-item"><div class="why-dot"></div><div class="why-text">Experiencing fatigue and afternoon energy crashes affecting work performance and family presence.</div></div>
-      <div class="why-item"><div class="why-dot"></div><div class="why-text">Lower back pain limiting ability to exercise, creating a cycle affecting both physical and mental health.</div></div>
-    </div>
-
-    <div class="ctm-box">
-      <div class="ctm-title">Connection to what matters to Taylor</div>
-      <div class="ctm-text">Work stress is directly impacting Taylor's goal of evening family presence. Behavioral Health and PCP should coordinate on sustainable work-life strategies. Energy management is the thread connecting Medical Care, Lifestyle, and Mind &amp; Purpose.</div>
-    </div>
-
-    <hr class="section-divider"/>
-
-    <div class="plbl" style="margin-bottom:8px;">Provider Notes — Key Points</div>
+  <!-- BOTTOM: Provider notes landscape -->
+  <div class="notes-panel">
+    <span class="plbl">Care team</span>
+    <h2 class="ptitle" style="margin-bottom:12px;">Provider notes — key points</h2>
     <div class="ntabs">
-      <div class="ntab"><span class="ntab-dot" style="background:#C0392B"></span>Cardiology</div>
-      <div class="ntab"><span class="ntab-dot" style="background:#FAAE3C"></span>Endocrinology</div>
-      <div class="ntab active"><span class="ntab-dot" style="background:#00A386"></span>Behavioral Health</div>
-      <div class="ntab"><span class="ntab-dot" style="background:#0093BF"></span>Physical Therapy</div>
+      <div class="ntab"><span class="ndot" style="background:#C0392B"></span>Cardiology</div>
+      <div class="ntab"><span class="ndot" style="background:var(--glow)"></span>Endocrinology</div>
+      <div class="ntab active"><span class="ndot" style="background:var(--pool)"></span>Behavioral health</div>
+      <div class="ntab"><span class="ndot" style="background:var(--wind)"></span>Physical therapy</div>
     </div>
-    <div class="note-card">
-      <div class="nc-name">Priya Mehta, LCSW</div>
-      <div class="nc-sub">Behavioral Health · May 1, 2026</div>
-      <div class="nc-sum">"Taylor reports improved coping strategies. Anxiety manageable without medication. CBT weekly ongoing. Work-related stress remains the primary stressor."</div>
-      <div class="kp-lbl">Key Points</div>
-      <div class="kp"><div class="kpdot"></div><div class="kptext">Anxiety stable — no pharmacotherapy needed at this time</div></div>
-      <div class="kp"><div class="kpdot"></div><div class="kptext">CBT weekly, good engagement and resilience building</div></div>
-      <div class="kp"><div class="kpdot"></div><div class="kptext">Primary stressor: work demands — directly tied to Taylor's evening presence goal</div></div>
-      <div class="kp"><div class="kpdot"></div><div class="kptext">No safety concerns; follow-up in 2 weeks</div></div>
-    </div>
-    <div class="flag-badge">&#9888; Weight gain noted by Endocrinology — coordinate with PCP</div>
-  </div>
-
-  <!-- REFERRAL -->
-  <div class="panel full">
-    <span class="plbl">Directory</span>
-    <h2 class="ptitle">Provider Referral Look-Up</h2>
-    <div class="ref-controls">
-      <input class="ref-input" placeholder="Search name, specialty, certification, philosophy…" value=""/>
-      <select class="ref-select"><option>All Specialties</option><option>Neurology</option><option>Gastroenterology</option><option>Dietitian</option><option>Psychiatry</option></select>
-      <label style="display:flex;align-items:center;gap:5px;font-size:10px;color:#4D545E;"><input type="checkbox"/>Accepting only</label>
-    </div>
-    <div class="tag-filter-row">
-      <span class="tf-lbl">Filter by:</span>
-      <span class="tf cert">Board Certifications</span>
-      <span class="tf spec">Specialties</span>
-      <span class="tf phil">Care Philosophy</span>
-      <span class="tf">License Type</span>
-    </div>
-    <div class="ref-count">6 providers shown · 12 in network</div>
-    <div class="rgrid">
-      <div class="rcard sel">
-        <div class="rc-name">Dr. Angela Torres</div><div class="rc-spec">Gastroenterology</div>
-        <div class="rc-row"><span class="badge acc">Accepting</span><span class="rc-rating">&#9733; 4.9</span></div>
-        <div class="rc-wait med">Est. wait: 14 days</div>
-        <div class="tags"><span class="tag cert">ABIM Board Certified</span><span class="tag spec">IBD &amp; Motility</span><span class="tag spec">Gut-Brain Axis</span><span class="tag phil">Integrative GI</span></div>
-        <div class="det-div"><div class="det-row"><span class="det-l">Location</span><span class="det-v">Main Campus, Bldg A</span></div><div class="det-row"><span class="det-l">Phone</span><span class="det-v">555-0182</span></div></div>
-        <button class="ref-btn">+ Initiate Referral for Taylor</button>
+    <div class="note-body">
+      <div class="note-left">
+        <div class="nc-name">Priya Mehta, LCSW</div>
+        <div class="nc-meta">Behavioral health · May 1, 2026</div>
+        <div class="nc-q">"Taylor reports improved coping strategies. Anxiety manageable without medication. CBT weekly ongoing. Work stress remains the primary stressor."</div>
+        <div class="flag-badge" style="margin-top:14px;">&#9888; Weight gain noted by Endocrinology — monitor in prediabetes context</div>
       </div>
-      <div class="rcard">
-        <div class="rc-name">Dr. Fatima Al-Said</div><div class="rc-spec">Neurology</div>
-        <div class="rc-row"><span class="badge acc">Accepting</span><span class="rc-rating">&#9733; 4.6</span></div>
-        <div class="rc-wait fast">Est. wait: 7 days</div>
-        <div class="tags"><span class="tag cert">ABPN Certified</span><span class="tag spec">TBI Neurology</span><span class="tag spec">Headache Medicine</span><span class="tag phil">Trauma-Informed</span></div>
-      </div>
-      <div class="rcard">
-        <div class="rc-name">Maya Chen, RD</div><div class="rc-spec">Dietitian / Nutrition</div>
-        <div class="rc-row"><span class="badge acc">Accepting</span><span class="rc-rating">&#9733; 4.8</span></div>
-        <div class="rc-wait fast">Est. wait: 5 days</div>
-        <div class="tags"><span class="tag lic">Registered Dietitian</span><span class="tag spec">Perimenopause Support</span><span class="tag spec">Metabolic Health</span><span class="tag phil">Whole-Food Approach</span></div>
-      </div>
-      <div class="rcard">
-        <div class="rc-name">Dr. Lin Huang</div><div class="rc-spec">Neurology</div>
-        <div class="rc-row"><span class="badge clo">Closed</span><span class="rc-rating">&#9733; 4.8</span></div>
-        <div class="tags"><span class="tag cert">ABPN Certified</span><span class="tag spec">Degenerative Neurology</span><span class="tag spec">Parkinson's</span><span class="tag phil">Evidence-Based</span></div>
-      </div>
-      <div class="rcard">
-        <div class="rc-name">Dr. Raj Gupta</div><div class="rc-spec">Psychiatry</div>
-        <div class="rc-row"><span class="badge acc">Accepting</span><span class="rc-rating">&#9733; 4.6</span></div>
-        <div class="rc-wait med">Est. wait: 28 days</div>
-        <div class="tags"><span class="tag cert">ABPN Board Certified</span><span class="tag spec">Anxiety &amp; Mood</span><span class="tag spec">Perinatal Mental Health</span><span class="tag phil">Collaborative Care</span></div>
-      </div>
-      <div class="rcard">
-        <div class="rc-name">Dr. Marcus Webb</div><div class="rc-spec">Gastroenterology</div>
-        <div class="rc-row"><span class="badge acc">Accepting</span><span class="rc-rating">&#9733; 4.7</span></div>
-        <div class="rc-wait med">Est. wait: 21 days</div>
-        <div class="tags"><span class="tag cert">ABIM Board Certified</span><span class="tag spec">GERD &amp; Reflux</span><span class="tag spec">Endoscopy</span><span class="tag phil">Patient-Centered</span></div>
+      <div>
+        <div class="kp-lbl">Key points</div>
+        <div class="kp"><div class="kpdot"></div><div class="kptext">Anxiety stable — no pharmacotherapy needed at this time</div></div>
+        <div class="kp"><div class="kpdot"></div><div class="kptext">CBT weekly, good engagement and resilience building</div></div>
+        <div class="kp"><div class="kpdot"></div><div class="kptext">Work demands tied directly to Taylor's energy and family presence goals</div></div>
+        <div class="kp"><div class="kpdot"></div><div class="kptext">No safety concerns; follow-up in 2 weeks</div></div>
       </div>
     </div>
   </div>
-
 </div>
+
+<!-- ══════════════════════════════════════
+     REFERRALS
+══════════════════════════════════════ -->
+<div class="tab-content" id="tab-referrals">
+  <div class="panel">
+    <span class="plbl">Referral directory</span>
+    <h2 class="ptitle" style="margin-bottom:5px;">Dietitian matches for Taylor</h2>
+    <p style="font-size:10px;color:var(--river);margin-bottom:14px;line-height:1.5;">Pre-filtered based on Taylor's care plan logistics and clinical needs. Showing dietitians who are accepting patients, available mornings or lunch, within 15 min of Taylor's north side location, and specializing in prediabetes or metabolic health.</p>
+    <div class="filter-bar">
+      <div style="font-size:10px;font-weight:500;color:var(--shale);margin-bottom:10px;">Active filters — matched to Taylor's profile</div>
+      <div class="filter-chips">
+        <div class="fchip pool"><span>Specialty: Prediabetes &amp; metabolic health</span><span class="fchip-x">×</span></div>
+        <div class="fchip wind"><span>Availability: Morning &amp; lunchtime</span><span class="fchip-x">×</span></div>
+        <div class="fchip wind"><span>Location: Within 15 min · North side</span><span class="fchip-x">×</span></div>
+        <div class="fchip pool"><span>Status: Accepting patients</span><span class="fchip-x">×</span></div>
+        <div class="fchip glow"><span>Insurance: Accepts Taylor's plan</span><span class="fchip-x">×</span></div>
+      </div>
+      <div style="font-size:10px;color:var(--river);">+ Add filter &nbsp;·&nbsp; <span style="color:#006B55;cursor:pointer;">Clear all &amp; browse full directory</span></div>
+    </div>
+    <div style="font-size:10px;color:var(--river);margin-bottom:12px;"><strong style="color:var(--shale);">2 dietitians</strong> match all of Taylor's filters</div>
+    <div class="ref-grid">
+      <div class="rcard best">
+        <div class="rc-name">Maya Chen, RD</div>
+        <div class="rc-spec">Registered Dietitian · Nutrition</div>
+        <div class="rc-row"><span class="badge acc">Accepting</span><span class="rc-rat">&#9733; 4.8</span></div>
+        <div class="rc-wait fast">Est. wait: 5 days</div>
+        <div class="rtags"><span class="rtag lic">Registered Dietitian</span><span class="rtag spec">Prediabetes reversal</span><span class="rtag spec">Metabolic health</span><span class="rtag spec">Family meal planning</span><span class="rtag phil">Whole-food approach</span></div>
+        <div class="match-list">
+          <div class="match-row"><span>✓</span><span class="match-text"><strong>Morning &amp; lunch</strong> availability confirmed</span></div>
+          <div class="match-row"><span>✓</span><span class="match-text"><strong>8 min</strong> from Taylor · Riverside North Clinic</span></div>
+          <div class="match-row"><span>✓</span><span class="match-text">Accepts <strong>Taylor's insurance</strong></span></div>
+          <div class="match-row"><span>✓</span><span class="match-text">Specializes in <strong>family-inclusive nutrition coaching</strong></span></div>
+        </div>
+        <button class="ref-btn">+ Initiate referral for Taylor</button>
+      </div>
+      <div class="rcard">
+        <div class="rc-name">Dr. Sandra Reyes, RDN</div>
+        <div class="rc-spec">Registered Dietitian Nutritionist</div>
+        <div class="rc-row"><span class="badge acc">Accepting</span><span class="rc-rat">&#9733; 4.6</span></div>
+        <div class="rc-wait med">Est. wait: 12 days</div>
+        <div class="rtags"><span class="rtag lic">RDN Certified</span><span class="rtag spec">Metabolic health</span><span class="rtag spec">Blood sugar management</span><span class="rtag cert">CDE Certified</span><span class="rtag phil">Evidence-based</span></div>
+        <div class="match-list">
+          <div class="match-row"><span>✓</span><span class="match-text"><strong>Lunchtime</strong> slots available</span></div>
+          <div class="match-row"><span>✓</span><span class="match-text"><strong>11 min</strong> from Taylor · Main Campus</span></div>
+          <div class="match-row"><span>✓</span><span class="match-text">Accepts <strong>Taylor's insurance</strong></span></div>
+          <div class="match-row" style="opacity:.45"><span>—</span><span class="match-text">Family meal planning not listed as specialty</span></div>
+        </div>
+        <button class="ref-btn">+ Initiate referral for Taylor</button>
+      </div>
+      <div class="rcard dim">
+        <div class="rc-name">James Okafor, MS RD</div>
+        <div class="rc-spec">Registered Dietitian</div>
+        <div class="rc-row"><span class="badge acc">Accepting</span><span class="rc-rat">&#9733; 4.7</span></div>
+        <div class="rc-wait fast">Est. wait: 3 days</div>
+        <div class="rtags"><span class="rtag lic">Registered Dietitian</span><span class="rtag spec">Prediabetes</span><span class="rtag spec">Weight management</span></div>
+        <div class="match-list">
+          <div class="match-row" style="opacity:.45"><span>—</span><span class="match-text"><strong>22 min</strong> from Taylor · outside preferred radius</span></div>
+          <div class="match-row"><span>✓</span><span class="match-text">Morning availability confirmed</span></div>
+          <div class="match-row"><span>✓</span><span class="match-text">Accepts Taylor's insurance</span></div>
+        </div>
+        <button class="ref-btn dim">+ Initiate referral for Taylor</button>
+      </div>
+    </div>
+    <div class="divider-lbl">Full network · all specialties</div>
+    <div class="ref-grid-sm">
+      <div class="rcard-sm"><div class="rcard-sm-name">Dr. Angela Torres</div><div class="rcard-sm-spec">Gastroenterology · Accepting · ★ 4.9</div></div>
+      <div class="rcard-sm"><div class="rcard-sm-name">Dr. Fatima Al-Said</div><div class="rcard-sm-spec">Neurology · Accepting · ★ 4.6</div></div>
+      <div class="rcard-sm"><div class="rcard-sm-name">Dr. Raj Gupta</div><div class="rcard-sm-spec">Psychiatry · Accepting · ★ 4.6</div></div>
+      <div class="rcard-sm"><div class="rcard-sm-name">Dr. Marcus Webb</div><div class="rcard-sm-spec">Gastroenterology · Accepting · ★ 4.7</div></div>
+      <div class="rcard-sm"><div class="rcard-sm-name">Dr. Lin Huang</div><div class="rcard-sm-spec">Neurology · Closed · ★ 4.8</div></div>
+      <div class="rcard-sm"><div class="rcard-sm-name">Dr. Raj Patel</div><div class="rcard-sm-spec">Endocrinology · Accepting · ★ 4.5</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+</script>
 </body>
 </html>
